@@ -21,7 +21,7 @@ function operate(firstOperand, operator, secondOperand) {
       return add(firstOperand, secondOperand);
     case "-":
       return subtract(firstOperand, secondOperand);
-    case "*":
+    case "x":
       return multiply(firstOperand, secondOperand);
     case "/":
       return divide(firstOperand, secondOperand);
@@ -45,9 +45,17 @@ pointButton.addEventListener("click", () => {
 const operatorButtons = document.querySelectorAll(".operator-button");
 operatorButtons.forEach(button => {
   button.addEventListener("click", () => {
-    display.textContent += button.textContent;
+    firstOperand = +display.textContent;
+    operator = button.textContent;
+    display.textContent = "";
   })
 })
 
 const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", () => display.textContent = "");
+
+const equalsButton = document.querySelector("#equals");
+equalsButton.addEventListener("click", () => {
+  secondOperand = +display.textContent;
+  display.textContent = operate(firstOperand, operator, secondOperand);
+});
