@@ -4,6 +4,7 @@ let operator = "";
 let secondOperand = 0;
 const display = document.querySelector("#display");
 display.textContent = displayValue;
+const maxDigitsDisplay = 11;
 
 // Operations
 function add(...operands) {
@@ -42,19 +43,41 @@ function clear() {
 function equals() {
   secondOperand = +displayValue;
   displayValue = operate(firstOperand, operator, secondOperand);
-  display.textContent = displayValue;
+  display.textContent = roundDisplayValue(displayValue);
   firstOperand = +displayValue;
   operator = "";
   secondOperand = 0;
+}
+
+// Other functions
+function fitsOnDisplay(value) {
+  return value.toString().length < maxDigitsDisplay;
+}
+
+function roundDisplayValue(value) {
+  return value.
+    toString().
+    split("").
+    slice(0, maxDigitsDisplay).
+    join("");
 }
 
 // Buttons
 const numberButtons = document.querySelectorAll(".number-button");
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
-    if (displayValue === 0 || operator) display.textContent = "";
-    display.textContent += button.id;
-    displayValue = display.textContent;
+    if (fitsOnDisplay(displayValue)) {
+      if (displayValue[displayValue.length-1] === ".") displayValue += button.id;
+      else if (
+        displayValue === 0 ||
+        displayValue === 0 && operator
+      ) {
+        display.textContent = "";
+        displayValue = button.id;
+      } else displayValue += button.id;
+      
+      display.textContent = displayValue;
+    }
   })
 });
 
@@ -63,10 +86,10 @@ pointButton.addEventListener("click", () => {
   const pointNumberFilter = displayValue
     .split("")
     .filter(element => element === ".")
-    .toString()
+    .toString();
   if (pointNumberFilter === "") {
-    display.textContent += pointButton.textContent;
-    displayValue = display.textContent;
+    displayValue += pointButton.textContent;
+    display.textContent = displayValue;
   }
 });
 
@@ -77,12 +100,10 @@ operatorButtons.forEach(button => {
       firstOperand = +displayValue;
       operator = button.textContent;
       displayValue = 0;
-    } else if (operator === "") {
-      operator = button.textContent;
     } else {
       secondOperand = +displayValue;
       displayValue = operate(firstOperand, operator, secondOperand);
-      display.textContent = displayValue;
+      display.textContent = roundDisplayValue(displayValue);
       firstOperand = +displayValue;
       displayValue = 0;
       operator = button.textContent;
