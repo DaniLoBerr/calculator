@@ -28,7 +28,8 @@ function operate(firstOperand, operator, secondOperand) {
     case "x":
       return multiply(firstOperand, secondOperand);
     case "/":
-      return divide(firstOperand, secondOperand);
+      if (secondOperand === 0) return "D'oh!!";
+      else return divide(firstOperand, secondOperand);
     default:
       return 0;
   }
@@ -70,10 +71,11 @@ numberButtons.forEach(button => {
       if (displayValue[displayValue.length-1] === ".") displayValue += button.id;
       else if (
         displayValue === 0 ||
+        displayValue === "D'oh!!" ||
         displayValue === 0 && operator
       ) {
         display.textContent = "";
-        displayValue = button.id;
+        displayValue = button.id
       } else displayValue += button.id;
       
       display.textContent = displayValue;
