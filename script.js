@@ -100,6 +100,9 @@ operatorButtons.forEach(button => {
       firstOperand = +displayValue;
       operator = button.textContent;
       displayValue = 0;
+    } else if(!operator) {
+      operator = button.textContent;
+      displayValue = 0;
     } else {
       secondOperand = +displayValue;
       displayValue = operate(firstOperand, operator, secondOperand);
