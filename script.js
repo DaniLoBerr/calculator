@@ -42,12 +42,16 @@ function clear() {
   secondOperand = 0;
 }
 function equals() {
-  secondOperand = +displayValue;
-  displayValue = operate(firstOperand, operator, secondOperand);
-  display.textContent = roundDisplayValue(displayValue);
-  firstOperand = +displayValue;
-  operator = "";
-  secondOperand = 0;
+  if (Number.isNaN(firstOperand)) {
+    clear();
+  } else {
+    secondOperand = +displayValue;
+    displayValue = operate(firstOperand, operator, secondOperand);
+    display.textContent = roundDisplayValue(displayValue);
+    firstOperand = +displayValue;
+    operator = "";
+    secondOperand = 0;
+  }
 }
 
 // Other functions
