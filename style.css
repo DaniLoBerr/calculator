@@ -6,6 +6,7 @@
 
 body {
   font-family: monospace;
+  background-color: #E9C589;
 }
 
 #main-heading {
@@ -15,7 +16,7 @@ body {
 }
 
 #calculator {
-  background-color: #4D4D4D;
+  background: linear-gradient(120deg, rgb(180, 195, 200), rgb(200, 215, 220) 10%);
   margin: 0 auto;
   width: 350px;
   padding: 30px;
@@ -23,6 +24,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  border: 1px solid black;
+  box-shadow: 1px 1px 5px 1px;
 }
 
 #display {
@@ -32,6 +35,7 @@ body {
   border-radius: 10px;
   font-size: xxx-large;
   min-height: 85px;
+  border: 1px solid black;
 }
 
 #buttons-container {
@@ -47,7 +51,7 @@ body {
 }
 
 .button {
-  background-color: #808080;
+  background-color: #4D4D4D;
   color: #FFF;
   font-size: xx-large;
   font-weight: 900;
@@ -55,14 +59,21 @@ body {
 }
 
 .button.operator-button {
-  background-color: #65C8CF;
+  background-color: #304A85;
 }
 
 .button#equals {
-  background-color: #EA5C5F;
+  background-color: #B05195;
 }
 
-.button#clear,
+.button#backspace {
+  background-color: #F0E427;
+}
+
+.button#clear {
+  background-color: #65AF30;
+}
+
 .button#equals,
 .button#add {
   flex: 2;

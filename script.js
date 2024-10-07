@@ -53,6 +53,20 @@ function equals() {
     secondOperand = 0;
   }
 }
+function backspace() {
+  if (
+    displayValue.length === 1 || 
+    displayValue === "D'oh!!"
+  ) {
+    displayValue = 0;
+    display.textContent = 0;
+  } else {
+    displayValue = displayValue
+      .toString()
+      .replace(displayValue[displayValue.length-1], "");
+    display.textContent = displayValue;
+  }
+}
 
 // Other functions
 function fitsOnDisplay(value) {
@@ -123,6 +137,9 @@ operatorButtons.forEach(button => {
 
 const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", () => clear());
+
+const backspaceButton = document.querySelector("#backspace");
+backspaceButton.addEventListener("click", () => backspace());
 
 const equalsButton = document.querySelector("#equals");
 equalsButton.addEventListener("click", () => equals());
