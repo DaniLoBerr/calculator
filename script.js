@@ -61,7 +61,7 @@ function backspace() {
     displayValue = 0;
     display.textContent = 0;
   } else {
-    displayValue = displayValue
+    displayValue = +displayValue
       .toString()
       .replace(displayValue[displayValue.length-1], "");
     display.textContent = displayValue;
