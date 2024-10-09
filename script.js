@@ -61,9 +61,10 @@ function backspace() {
     displayValue = 0;
     display.textContent = 0;
   } else {
-    displayValue = +displayValue
-      .toString()
-      .replace(displayValue[displayValue.length-1], "");
+    displayValue = roundDisplayValue(displayValue);
+    displayValue = displayValue.toString();
+    displayValue = displayValue.replace(displayValue[displayValue.length-1], "");
+    displayValue = +displayValue;
     display.textContent = displayValue;
   }
 }
@@ -74,11 +75,15 @@ function fitsOnDisplay(value) {
 }
 
 function roundDisplayValue(value) {
-  return value.
-    toString().
-    split("").
-    slice(0, maxDigitsDisplay).
-    join("");
+  if (fitsOnDisplay(value)) {
+    return value;
+  } else {
+    return value
+    .toString()
+    .split("")
+    .slice(0, maxDigitsDisplay)
+    .join("");
+  }
 }
 
 // Buttons
